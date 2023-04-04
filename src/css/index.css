@@ -1,4 +1,17 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* global variables */
+:root {
+    --green: #33855d;
+}
+
+.navbar {
+    background-color: var(--green) !important;
+}
+
+.new-nav-style {
+  background-color: var(--green) !important;
 }

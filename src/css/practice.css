@@ -1,0 +1,24 @@
+.practice-page {
+    height: 100vh;
+}
+.language-container {
+    height: 100%;
+    width: 100%;
+}
+
+/* .language-card {
+width: 10rem !important;
+height: 10rem !important;
+} */
+/* .language-card {
+    padding-bottom: 10rem !important;
+} */
+.question-card-left {
+    width: 90%;
+}
+.question-card-right {
+    width: 10%;
+}
+.question-props {
+    color: var(--green) !important;
+}

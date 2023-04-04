@@ -28,6 +28,7 @@ const NavBar = () => {
   let loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
   let currentUser = "";
   let currentUserEmail = "";
+  const location = window.location.href;
 
   if (loginStatus) {
     try {
@@ -42,12 +43,38 @@ const NavBar = () => {
 
   return (
     <div className="nav-bar">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        // bg={
+        //   location.endsWith("/") ||
+        //   location.endsWith("/dashboard") ||
+        //   location.endsWith("/login")
+        //     ? "dark"
+        //     : "light"
+        // }
+        // variant={
+        //   location.endsWith("/") ||
+        //   location.endsWith("/dashboard") ||
+        //   location.endsWith("/login")
+        //     ? "dark"
+        //     : "light"
+        // }
+        // className={
+        //   location.endsWith("/") ||
+        //   location.endsWith("/dashboard") ||
+        //   location.endsWith("/login")
+        //     ? "new-nav-style"
+        //     : ""
+        // }
+        bg="dark"
+        variant="dark"
+      >
         <Container>
           <Navbar.Brand href="/">HackZone</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className=" me-auto">
               <Nav.Link href="/dashboard">Dashboard</Nav.Link>
               <Nav.Link href="/practice">Practice</Nav.Link>
               <Nav.Link href="/submissions">Submissions</Nav.Link>

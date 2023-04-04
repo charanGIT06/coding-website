@@ -51,10 +51,13 @@ export default () => {
           if (localStorage.getItem("loginStatus")) {
             localStorage.setItem("loginStatus", JSON.stringify(true));
             const activeAccount = {
-                username: JSON.parse(account).username,
-                email: JSON.parse(account).email,
-            }
-            localStorage.setItem("activeAccount", JSON.stringify(activeAccount));
+              username: JSON.parse(account).username,
+              email: JSON.parse(account).email,
+            };
+            localStorage.setItem(
+              "activeAccount",
+              JSON.stringify(activeAccount)
+            );
           }
           toast({
             title: "Login Successful",
@@ -85,47 +88,49 @@ export default () => {
   };
 
   return (
-    <div className="login-form d-flex flex-column justify-content-center px-3">
-      <form action="" className="d-flex flex-column">
-        <h3 className="text-center mb-4">Login to your account</h3>
-        <label htmlFor="username">
-          <Input
-            className="input mb-2"
-            variant="outline"
-            placeholder="Username"
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-          />
-        </label>
-        <label htmlFor="password">
-          <InputGroup size="md">
+    <div className="login-container">
+      <div className="login-form d-flex flex-column justify-content-center px-3 py-5">
+        <form action="" className="d-flex flex-column px-4 py-5">
+          <h3 className="text-center mb-4 pb-4  ">Login to your account</h3>
+          <label htmlFor="username">
             <Input
               className="input mb-2"
-              pr="4.5rem"
-              type={show ? "text" : "password"}
-              placeholder="Enter password"
+              variant="outline"
+              placeholder="Username"
               onChange={(e) => {
-                setPassword(e.target.value);
+                setUserName(e.target.value);
               }}
             />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                {show ? "Hide" : "Show"}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-        </label>
-        <Button
-          className="input mb-2"
-          colorScheme="green"
-          onClick={() => {
-            login();
-          }}
-        >
-          Login
-        </Button>
-      </form>
+          </label>
+          <label htmlFor="password">
+            <InputGroup size="md">
+              <Input
+                className="input mb-2"
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                placeholder="Enter password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </label>
+          <Button
+            className="input mb-2"
+            colorScheme="green"
+            onClick={() => {
+              login();
+            }}
+          >
+            Login
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

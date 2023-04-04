@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage";
 import Dashboard from "./pages/Dashboard";
 import Practice from "./pages/Practice";
 import Submissions from "./pages/Submissions";
+import CodingPage from "./pages/CodingPage";
 // CSS
 import "./css/index.css";
 
@@ -33,6 +34,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           />
           <Route path="/practice" element={<Practice />} />
           <Route path="/submissions" element={<Submissions />} />
+          <Route path="/codingpage/:language/:qid/:question" element={<CodingPage />} />
+          {/* <Route path="/codingpage/:language" element={<CodingPage />} /> */}
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

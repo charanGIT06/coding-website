@@ -1,12 +1,36 @@
-.left, .right {
-    height: calc(100vh - 56px);
+.left,
+.right {
+  height: calc(100vh - 56px);
 }
-/* .right {
-    background-color: red ;
+/* .home-page {
+background: rgb(51,133,93);
+background: linear-gradient(180deg, rgba(51,133,93,1) 51%, rgba(255,255,255,0.5998774509803921) 100%);
 } */
-.login-form, .signup-form {
-    height: 100%;
+.right {
+  background: rgb(51, 133, 93);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 133, 93, 1) 5%,
+    rgba(255, 255, 255, 0.5998774509803921) 50%
+  );
+}
+.signup-container,
+.login-container {
+  height: 100%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form,
+.signup-form {
+  height: auto;
+  width: 90%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.725);
 }
 .input {
-height: 3rem !important;
+  height: 3rem !important;
 }
