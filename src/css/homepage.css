@@ -1,0 +1,12 @@
+.left, .right {
+    height: calc(100vh - 56px);
+}
+/* .right {
+    background-color: red ;
+} */
+.login-form, .signup-form {
+    height: 100%;
+}
+.input {
+height: 3rem !important;
+}
