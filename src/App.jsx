@@ -15,15 +15,22 @@ import Submissions from "./pages/Submissions";
 // CSS
 import "./css/index.css";
 
+const loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
+console.log(loginStatus);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider>
     <React.StrictMode>
-      <NavBar/>
+      <NavBar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:account" element={<HomePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={loginStatus ? <Dashboard /> :
+            <HomePage />}
+          />
           <Route path="/practice" element={<Practice />} />
           <Route path="/submissions" element={<Submissions />} />
         </Routes>
