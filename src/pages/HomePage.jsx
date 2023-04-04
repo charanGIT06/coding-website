@@ -15,6 +15,10 @@ export default () => {
   if (!localStorage.getItem("accounts")) {
     localStorage.setItem("accounts", JSON.stringify([]));
   }
+  //   Login Status
+  if (!localStorage.getItem("loginStatus")) {
+    localStorage.setItem("loginStatus", JSON.stringify(false));
+  }
 
   return (
     <div className="home-page">

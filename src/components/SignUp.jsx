@@ -15,56 +15,56 @@ export default () => {
 
   const toast = useToast();
 
-const formValidation = () => {
+  const formValidation = () => {
     if (username === "") {
-        toast({
-            title: "Username is required",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-        });
-        return false;
+      toast({
+        title: "Username is required",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
     }
     if (email === "") {
-        toast({
-            title: "Email is required",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-        });
-        return false;
+      toast({
+        title: "Email is required",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
     }
     if (password === "") {
-        toast({
-            title: "Password is required",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-        });
-        return false;   
+      toast({
+        title: "Password is required",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
     }
     if (confirmPassword === "") {
-        toast({
-            title: "Confirm Password is required",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-        });
-        return false;
+      toast({
+        title: "Confirm Password is required",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
     }
     if (password !== confirmPassword) {
-        toast({
-            title: "Passwords do not match",
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-        });
-        return false;
+      toast({
+        title: "Passwords do not match",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return false;
     }
     return true;
-}
+  };
 
-  const registerAccount = () => {
+  const signup = () => {
     const accounts = JSON.parse(localStorage.getItem("accounts"));
     console.log(accounts);
     let usernameStatus = false;
@@ -83,10 +83,7 @@ const formValidation = () => {
       }
     }
 
-    if (
-      !usernameStatus &&
-      !emailStatus &&
-      formValidation()) {
+    if (!usernameStatus && !emailStatus && formValidation()) {
       accounts.push(
         JSON.stringify({
           username: username,
@@ -170,7 +167,7 @@ const formValidation = () => {
                 isClosable: true,
               });
             } else {
-              if (registerAccount()) {
+              if (signup()) {
                 toast({
                   title: "Success",
                   description: "Account Created",
@@ -185,7 +182,15 @@ const formValidation = () => {
           Sign Up
         </Button>
         <p className="m-0 py-3 text-center">OR</p>
-        <Button className="input mb-2" variant="outline" colorScheme="green">
+        {/* Login */}
+        <Button
+          className="input mb-2"
+          variant="outline"
+          colorScheme="green"
+          onClick={() => {
+            window.location.href = "/login";
+          }}
+        >
           Login
         </Button>
       </form>
