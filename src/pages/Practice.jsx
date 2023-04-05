@@ -9,6 +9,7 @@ const data = {
   "python-questions": [
     {
       qid: "py-1",
+      language: "python",
       questionTitle: "Count the string",
       description:
         "Given a string consisting of only alphabets and characters, print the count of the alphabets and numbers respectively. If either count is equal to zero, do not print the corresponding result.",
@@ -16,7 +17,7 @@ const data = {
       inputFormat: "A string of alphabets and numbers",
       outputFormat: "Alphabets: (count)  Numbers: (count)",
       sampleInput: "July2022",
-      sampleOutput: "Alphabets: 4  Numbers: 4",
+      sampleOutput: ["Alphabets: 4", "Numbers: 4"],
       explanation:
         "In the given string, there are 4 alphabet characters and 4 numeric characters.",
       tags: "string, count",
@@ -24,16 +25,17 @@ const data = {
       testCases: [
         {
           input: "July2022",
-          output: "Alphabets: 4  Numbers: 4",
+          output: ["Alphabets: 4", "Numbers: 4"],
         },
         {
           input: "enTeR79257",
-          output: "Alphabets: 5  Numbers: 5",
+          output: ["Alphabets: 5", "Numbers: 5"],
         },
       ],
     },
     {
       qid: "py-2",
+      language: "python",
       questionTitle: "Position of character",
       description:
         "Write a python code to print the position or index of a given character from the given of string.",
@@ -59,6 +61,7 @@ const data = {
     },
     {
       qid: "py-3",
+      language: "python",
       questionTitle: "n characters from middle",
       description:
         "Given a string, print the n number of characters from the middle of the string",
@@ -84,6 +87,7 @@ const data = {
     },
     {
       qid: "py-4",
+      language: "python",
       questionTitle: "Greater than average",
       description:
         "Given a list of integers, print all the integers greater than the average of the given integers",
@@ -108,6 +112,7 @@ const data = {
     },
     {
       qid: "py-5",
+      language: "python",
       questionTitle: "Operation based on position",
       description:
         "Given a set of integers. Calculate the sum of integers present in the odd position in the list and multiplication of integers in the even position",
