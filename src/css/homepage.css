@@ -29,7 +29,7 @@ background: linear-gradient(180deg, rgba(51,133,93,1) 51%, rgba(255,255,255,0.59
   background-color: white;
   padding: 2rem;
   border-radius: 1.5rem;
-  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.725);
+  /* box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.725); */
 }
 .input {
   height: 3rem !important;

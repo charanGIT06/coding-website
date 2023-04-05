@@ -3,8 +3,11 @@ import { useState } from "react";
 // Chakra-UI
 import { Input, InputGroup, Button, InputRightElement } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
+// import { useParams } from "react-router-dom";
 
-export default () => {
+export default ({ route }) => {
+  // const { route } = useParams();
+
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,8 +46,9 @@ export default () => {
       const account = accounts.find(
         (account) => JSON.parse(account).username === username
       );
+      console.log("account: ", account);
 
-      if (JSON.parse(account)) {
+      if (account != undefined && JSON.parse(account)) {
         if (JSON.parse(account).password == password) {
           // Login Success
           //   localStorage.setItem("account", JSON.stringify(account));
@@ -65,7 +69,8 @@ export default () => {
             duration: 3000,
             isClosable: true,
           });
-          window.location.href = "/dashboard";
+          // console.log("route: ", route)
+          window.location.href = (route !== undefined ? route : "/dashboard");
         } else {
           // Login Failed
           toast({
@@ -86,6 +91,8 @@ export default () => {
       }
     }
   };
+
+  console.log("route: ", route);
 
   return (
     <div className="login-container">

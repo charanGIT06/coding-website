@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // Components
 import Question from "../components/Question";
 import "../css/code-editor.css";
+import Login from "../components/Login";
 // ACE Editor
 import ace from "ace-builds/src-noconflict/ace";
 import jsonWorkerUrl from "ace-builds/src-noconflict/worker-javascript?url";
@@ -21,6 +22,18 @@ import { encode, decode } from "js-base64";
 // Chakra-UI
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
+import { Spinner } from "react-bootstrap";
+import { CloseButton } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 
 export default () => {
   const { language, qid, question } = useParams();
@@ -33,6 +46,20 @@ export default () => {
     }
   });
 
+  // Login Status
+  const loginStatus = localStorage.getItem("loginStatus");
+
+  // Chakra-UI Modal variables for the code editor
+  let { isOpen, onOpen, onClose } = useDisclosure();
+  if (loginStatus === "false") {
+    isOpen = true;
+    onClose = () => {
+      window.location.href = "/";
+    };
+  } else {
+    isOpen = false;
+  }
+
   const [theme, setTheme] = useState("monokai");
   const [key, setKey] = useState("input");
   const [code, setCode] = useState(
@@ -41,6 +68,7 @@ export default () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [outputState, setOutputState] = useState("Not Running");
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
@@ -48,6 +76,7 @@ export default () => {
 
   const compileAndRun = (language_id, code, input, expected_output) => {
     // Function to get the submission result using the token
+    // 2. This function is called after the first function is executed and the token is received.
     const getSubmission = async (token) => {
       const options = {
         method: "GET",
@@ -60,10 +89,12 @@ export default () => {
         },
       };
 
+      // 1. Sending the request to the judge0 api to get the submission result using the token.
       axios
         .request(options)
         .then(function (response) {
           setKey("output");
+          setOutputState("Not Running");
           const data = response.data;
           console.log(data);
           console.log(typeof data);
@@ -104,10 +135,6 @@ export default () => {
           } catch (error) {
             console.log(error);
           }
-          //   const code = decode(data['source_code']);
-          //   const stdout = decode(data['stdout']);
-          //   console.log("CODE:\n", code);
-          //   console.log("OUTPUT: ", stdout);
         })
         .catch(function (error) {
           setOutput(error);
@@ -142,6 +169,7 @@ export default () => {
       .then(function (response) {
         const token = response.data.token;
         setOutput("Running");
+        setOutputState("Running");
         getSubmission(token);
       })
       .catch(function (error) {
@@ -155,10 +183,26 @@ export default () => {
     setOutput(output);
   }, [output]);
 
-  const loadingAttribute = 1;
-
+  console.log(window.location.href);
   return (
     <div className="code-container">
+      {/* Modal */}
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent className="p-0">
+          <div className="close p-2 m-0 d-flex justify-content-end">
+            <CloseButton onClick={() => {
+              window.location.href = "/practice";
+            }}/>
+          </div>
+          <Login route={window.location.href} />
+        </ModalContent>
+      </Modal>
       <div className="row">
         <div className="col-5 question-container">
           <Question data={codeQuestion} />
@@ -244,8 +288,11 @@ export default () => {
               variant="outline"
               colorScheme="gray"
               className="me-2"
+              {...(outputState == "Running" ? { isLoading: true } : "")}
+              {...(outputState == "Running" ? { loadingText: "Running" } : "")}
               onClick={() => {
                 compileAndRun("71", code, input, language);
+                setOutputState("Running");
                 handleTabsChange(1);
               }}
             >
@@ -308,16 +355,20 @@ export default () => {
                   />
                 </TabPanel>
                 <TabPanel className="px-0">
-                  <AceEditor
-                    mode="markdown"
-                    theme={theme}
-                    name="output-console"
-                    id="output-console"
-                    value={output}
-                    fontSize={18}
-                    showPrintMargin={false}
-                    placeholder="Output will be displayed here"
-                  />
+                  {outputState === "Running" ? (
+                    <Spinner />
+                  ) : (
+                    <AceEditor
+                      mode="markdown"
+                      theme={theme}
+                      name="output-console"
+                      id="output-console"
+                      value={output}
+                      fontSize={18}
+                      showPrintMargin={false}
+                      placeholder="Output will be displayed here"
+                    />
+                  )}
                 </TabPanel>
                 <TabPanel className="px-0">
                   <div className="test-cases">
@@ -343,30 +394,26 @@ export default () => {
                       </TabList>
                       <TabPanels>
                         <TabPanel>
-                          <div className="testcase">
-                            <div className="input">
-                              <p className="mb-2">Input</p>
-                              <p className="bg-dark text-white rounded p-3">
-                                Input goes here
-                              </p>
+                          <div className="testcase-details">
+                            <div className="testcase-input">
+                              <h5 className="testcase-heading">Input</h5>
+                              <p>Input is Shown Here</p>
                             </div>
-                            <div className="output">
-                              <p className="mb-2">Output</p>
-                              <p className="bg-dark text-white rounded p-3">
-                                Output goes here
-                              </p>
+                            <div className="testcase-output">
+                              <h5 className="testcase-heading">Output</h5>
+                              <p>Output is Shown Here</p>
                             </div>
-                            <div className="expected-output">
-                              <p className="mb-2">Expected Output</p>
-                              <p className="bg-dark text-white rounded p-3">
-                                Expected Output goes here
-                              </p>
+                            <div className="testcase-expected-output">
+                              <h5 className="testcase-heading">
+                                Expected Output
+                              </h5>
+                              <p>Expected Output is Shown Here</p>
                             </div>
-                            <div className="console-message">
-                              <p className="mb-2">Error</p>
-                              <p className="bg-dark text-white rounded p-3">
-                                Console Error goes here
-                              </p>
+                            <div className="compiler-message">
+                              <h5 className="testcase-heading">
+                                Compiler Message
+                              </h5>
+                              <p>Compiler Message is Shown Here</p>
                             </div>
                           </div>
                         </TabPanel>
