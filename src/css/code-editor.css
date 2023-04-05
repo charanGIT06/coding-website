@@ -1,4 +1,4 @@
-.code-editor {
+.code-editor, .submission-editor {
   width: 100% !important;
   overflow-y: auto !important;
   font-family: "consolas", "courier new", monospace !important;
@@ -8,6 +8,12 @@
   width: inherit !important;
   height: 300px !important;
   overflow-y: auto;
+  font-family: "consolas", "courier new", monospace !important;
+}
+#submission-editor {
+  width: 100% !important;
+  height: 300px !important;
+  overflow-y: auto !important;
   font-family: "consolas", "courier new", monospace !important;
 }
 .nav-tabs .nav-link {

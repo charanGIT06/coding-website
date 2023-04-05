@@ -96,7 +96,7 @@ export default ({ route }) => {
 
   return (
     <div className="login-container">
-      <div className="login-form d-flex flex-column justify-content-center px-3 py-5">
+      <div className="login-form d-flex flex-column justify-content-center px-3 py-3">
         <form action="" className="d-flex flex-column px-4 py-5">
           <h3 className="text-center mb-4 pb-4  ">Login to your account</h3>
           <label htmlFor="username">
