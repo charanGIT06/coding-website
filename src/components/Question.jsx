@@ -6,19 +6,19 @@ const Question = ({ data }) => {
 
       <div className="descrition-section">
         <h5 className="mt-4">Description</h5>
-        <pre className="problem-statement">{data.description}</pre>
+        <p className="problem-statement">{data.description}</p>
       </div>
       <div className="input-format-section">
         <h5 className="mt-4">Input Format</h5>
-        <pre className="input-format">{data.inputFormat}</pre>
+        <p className="input-format">{data.inputFormat}</p>
       </div>
       <div className="output-format-section">
         <h5 className="mt-4">Output Format</h5>
-        <pre className="output-format">{data.outputFormat}</pre>
+        <p className="output-format">{data.outputFormat}</p>
       </div>
       <div className="constraints-section">
         <h5 className="mt-4">Constraints</h5>
-        <pre className="constraints">{data.constraints}</pre>
+        <p className="constraints">{data.constraints}</p>
       </div>
       <div className="sample-input-section">
         {

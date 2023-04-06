@@ -18,6 +18,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
 
 const NavBar = () => {
   const [mode, setMode] = useState("Light");
@@ -75,10 +76,10 @@ const NavBar = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className=" me-auto">
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+              {/* <Nav.Link href="/dashboard">Dashboard</Nav.Link> */}
               <Nav.Link href="/practice">Practice</Nav.Link>
               <Nav.Link href="/submissions">Submissions</Nav.Link>
-              <Nav.Link href="/">
+              {/* <Nav.Link href="/">
                 <div className="theme-toggle d-flex align-items-center">
                   <Switch
                     className="pe-1"
@@ -94,7 +95,7 @@ const NavBar = () => {
                   ></Switch>
                   <p className="px-1 m-0">{mode}</p>
                 </div>
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
             <Nav className="d-flex flex-row align-items-center">
               <Nav.Link className="ps-0 py-0 pe-2" href="/login">
@@ -121,11 +122,6 @@ const NavBar = () => {
                       </div>
                     </DrawerHeader>
                     <DrawerBody>
-                      <p>Some contents...</p>
-                      <p>Some contents...</p>
-                      <p>Some contents...</p>
-                    </DrawerBody>
-                    <DrawerFooter borderTopWidth="1px">
                       <Button variant="outline" mr={3} onClick={onClose}>
                         Cancel
                       </Button>
@@ -139,7 +135,10 @@ const NavBar = () => {
                       >
                         Log Out
                       </Button>
-                    </DrawerFooter>
+                      <Divider/>
+                    </DrawerBody>
+                    {/* <DrawerFooter borderTopWidth="1px">
+                    </DrawerFooter> */}
                   </DrawerContent>
                 </Drawer>
                 <Avatar

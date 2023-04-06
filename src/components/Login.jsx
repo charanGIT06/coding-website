@@ -70,7 +70,7 @@ export default ({ route }) => {
             isClosable: true,
           });
           // console.log("route: ", route)
-          window.location.href = (route !== undefined ? route : "/dashboard");
+          window.location.href = (route !== undefined ? route : "/practice");
         } else {
           // Login Failed
           toast({
