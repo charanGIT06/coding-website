@@ -28,9 +28,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/:account" element={<HomePage />} />
           {/* <Route
             path="/dashboard"
-            element={loginStatus ? <Dashboard /> :
-            <HomePage />}
-          />
+            element={loginStatus ? <Dashboard /> : <HomePage />}
+          /> */}
           <Route path="/practice" element={<Practice />} />
           <Route path="/submissions" element={<Submissions />} />
           <Route
