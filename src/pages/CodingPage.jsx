@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // Components
 import Question from "../components/Question";
-import "../css/code-editor.css";
+import "../css/coding-page.css";
 import Login from "../components/Login";
 // ACE Editor
 import ace from "ace-builds/src-noconflict/ace";
@@ -30,9 +30,7 @@ import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 
 export default () => {
   const { language, qid, question } = useParams();
-  const data = JSON.parse(localStorage.getItem("data"))[
-    `${language}-questions`
-  ];
+  const data = JSON.parse(localStorage.getItem("data"))["questions"];
   const codeQuestion = data.find((question) => {
     if (question.qid === qid) {
       return question;
@@ -55,9 +53,7 @@ export default () => {
 
   const [theme, setTheme] = useState("monokai");
   const [key, setKey] = useState("input");
-  const [code, setCode] = useState(
-    "# Write your code here\nprint('Hello World')"
-  );
+  const [code, setCode] = useState("");
   const [tabIndex, setTabIndex] = useState(0);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -70,57 +66,57 @@ export default () => {
     setTabIndex(index);
   };
 
-  const submitCode = () => {
-    const noOfTestCases = codeQuestion.testCases.length;
-    let testResults = [];
-    // console.log("Question", codeQuestion)
-    // console.log("noOfTestCases", noOfTestCases)
+  // const submitCode = () => {
+  //   const noOfTestCases = codeQuestion.testCases.length;
+  //   let testResults = [];
+  //   // console.log("Question", codeQuestion)
+  //   // console.log("noOfTestCases", noOfTestCases)
 
-    // console.log(JSON.parse(localStorage.getItem("submissions")));
+  //   // console.log(JSON.parse(localStorage.getItem("submissions")));
 
-    for (let i = 0; i < noOfTestCases; i++) {
-      // console.log(
-      //   i,
-      //   "submit",
-      //   71,
-      //   code,
-      //   codeQuestion.testCases[i].input,
-      //   codeQuestion.testCases[i].output
-      // );
+  //   for (let i = 0; i < noOfTestCases; i++) {
+  //     // console.log(
+  //     //   i,
+  //     //   "submit",
+  //     //   71,
+  //     //   code,
+  //     //   codeQuestion.testCases[i].input,
+  //     //   codeQuestion.testCases[i].output
+  //     // );
 
-      // console.log("-------------------------------------");
+  //     // console.log("-------------------------------------");
 
-      // let submissions = JSON.parse(localStorage.getItem("submissions"));
-      // console.log("submissions", submissions);
-      // let languageSubmissions = submissions[language];
-      // console.log("languageSubmissions", languageSubmissions);
-      // let getQuestionSubmissions = languageSubmissions[qid];
-      // console.log("getQuestionSubmissions", getQuestionSubmissions);
-      // getQuestionSubmissions.push(submissionResult);
-      // console.log("getQuestionSubmissions", getQuestionSubmissions);
-      // languageSubmissions[qid] = getQuestionSubmissions;
-      // submissions[language] = languageSubmissions;
-      // localStorage.setItem("submit", JSON.stringify(submissions));
+  //     // let submissions = JSON.parse(localStorage.getItem("submissions"));
+  //     // console.log("submissions", submissions);
+  //     // let languageSubmissions = submissions[language];
+  //     // console.log("languageSubmissions", languageSubmissions);
+  //     // let getQuestionSubmissions = languageSubmissions[qid];
+  //     // console.log("getQuestionSubmissions", getQuestionSubmissions);
+  //     // getQuestionSubmissions.push(submissionResult);
+  //     // console.log("getQuestionSubmissions", getQuestionSubmissions);
+  //     // languageSubmissions[qid] = getQuestionSubmissions;
+  //     // submissions[language] = languageSubmissions;
+  //     // localStorage.setItem("submit", JSON.stringify(submissions));
 
-      try {
-        compileAndRun(
-          "submit",
-          71,
-          code,
-          codeQuestion.testCases[i].input,
-          codeQuestion.testCases[i].output
-        );
-        // useEffect(() => {
-        //   setTestResults(testResults).push(submissionResult);
-        // }, [submissionResult]);
-      } catch (err) {
-        console.log("SubmitCode() error", err);
-      }
+  //     try {
+  //       compileAndRun(
+  //         "submit",
+  //         71,
+  //         code,
+  //         codeQuestion.testCases[i].input,
+  //         codeQuestion.testCases[i].output
+  //       );
+  //       // useEffect(() => {
+  //       //   setTestResults(testResults).push(submissionResult);
+  //       // }, [submissionResult]);
+  //     } catch (err) {
+  //       console.log("SubmitCode() error", err);
+  //     }
 
-      // console.log("--------------------------------------");
-    }
-    console.log("testResults", testResults);
-  };
+  //     // console.log("--------------------------------------");
+  //   }
+  //   console.log("testResults", testResults);
+  // };
 
   const compileAndRun = (action, language_id, code, input, expected_output) => {
     // Function to get the submission result using the token
@@ -208,11 +204,20 @@ export default () => {
           setSubmissionResult({
             code: code,
             input: input,
-            expected_output: expected_output.join("\n"),
+            expected_output:
+              expected_output === "object"
+                ? expected_output.join("\n")
+                : expected_output,
             output: output,
             execTime: execTime,
             errMessage: errMessage,
-            passStatus: output === expected_output.join("\n") ? true : false,
+            passStatus:
+              output ===
+              (expected_output === "object"
+                ? expected_output.join("\n")
+                : expected_output)
+                ? true
+                : false,
           });
           // if (action === "submit") {
           //   console.log("Entered");
@@ -306,362 +311,272 @@ export default () => {
     setOutput(output);
   }, [output]);
 
-  useEffect(() => {
-    // console.log("Submission Result: ", submissionResult);
-    console.log("Test Results: ", testResults)
-    console.log("Test Results Type: ", typeof testResults)
-    const presentResults = testResults;
-    presentResults.push(submissionResult);
-    setTestResults(presentResults);
+  // useEffect(() => {
+  //   // console.log("Submission Result: ", submissionResult);
+  //   console.log("Test Results: ", testResults);
+  //   console.log("Test Results Type: ", typeof testResults);
+  //   const presentResults = testResults;
+  //   presentResults.push(submissionResult);
+  //   setTestResults(presentResults);
 
-    let submissions = JSON.parse(localStorage.getItem("submissions"));
-    if (submissions === null || submissions === undefined) {
-      submissions = {};
-    }
-    if (
-      submissions[language] === undefined ||
-      submissions[language] === null
-    ) {
-      submissions[language] = {};
-    }
-    let lang = submissions[language];
-    if (
-      lang[codeQuestion.qid] === undefined ||
-      lang[codeQuestion.qid] === null
-    ) {
-      lang[codeQuestion.qid] = [];
-    }
-    let question = lang[codeQuestion.qid];
-    question.push(testResults);
-    lang[codeQuestion.qid] = question;
-    submissions[language] = lang;
-    localStorage.setItem("submissions", JSON.stringify(submissions));
-  }, [submissionResult]);
+  //   let submissions = JSON.parse(localStorage.getItem("submissions"));
+  //   if (submissions === null || submissions === undefined) {
+  //     submissions = {};
+  //   }
+  //   if (submissions[language] === undefined || submissions[language] === null) {
+  //     submissions[language] = {};
+  //   }
+  //   let lang = submissions[language];
+  //   if (
+  //     lang[codeQuestion.qid] === undefined ||
+  //     lang[codeQuestion.qid] === null
+  //   ) {
+  //     lang[codeQuestion.qid] = [];
+  //   }
+  //   let question = lang[codeQuestion.qid];
+  //   question.push(testResults);
+  //   lang[codeQuestion.qid] = question;
+  //   submissions[language] = lang;
+  //   localStorage.setItem("submissions", JSON.stringify(submissions));
+  // }, [submissionResult]);
 
   return (
-    <div className="tabs-container">
-      <Tabs variant="enclosed" defaultIndex={0}>
-        <TabList>
-          <Tab>Code PlayGround</Tab>
-          <Tab>Submissions</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <div className="code-container">
-              {/* Modal */}
-              <Modal
-                closeOnOverlayClick={false}
-                isOpen={isOpen}
-                onClose={onClose}
-                isCentered
-              >
-                <ModalOverlay />
-                <ModalContent className="p-0">
-                  <div className="close p-2 m-0 d-flex justify-content-end">
-                    <CloseButton
-                      onClick={() => {
-                        window.location.href = "/practice";
-                      }}
-                    />
-                  </div>
-                  <Login route={window.location.href} />
-                </ModalContent>
-              </Modal>
-              <div className="row">
-                <div className="col-5 question-container">
-                  <Question data={codeQuestion} />
-                </div>
-                <div className="col-7 code-playground">
-                  <div className="editor-options d-flex align-items-center justify-content-end py-2">
-                    <label htmlFor="language">
-                      Language:
-                      <select
-                        name="language"
-                        id="language"
-                        className="language mx-2 p-1"
-                      >
-                        <option value="Python">Python</option>
-                      </select>
-                    </label>
-                    <label htmlFor="theme" className="ms-2">
-                      Theme:
-                      <select
-                        name="theme"
-                        id="theme"
-                        onChange={(e) => {
-                          setTheme(e.target.value);
-                          console.log(e.target.value);
-                        }}
-                        className="theme mx-2 p-1"
-                      >
-                        <option value="monokai">Dark</option>
-                        <option value="github">Light</option>
-                      </select>
-                    </label>
-                    <Button
-                      variant="outline"
-                      colorScheme="green"
-                      size="sm"
-                      onClick={() => {
-                        setCode("# Write your code here\nprint('Hello World')");
-                        setOutput("Output will be displayed here");
-                      }}
-                    >
-                      Reset
-                    </Button>
-                  </div>
-                  <AceEditor
-                    placeholder="Write your code here"
-                    mode="python"
-                    theme={theme}
-                    name="blah2"
-                    onLoad={() => {}}
-                    onChange={(e) => {
-                      setCode(e);
-                    }}
-                    className="code-editor rounded"
-                    id="code-editor"
-                    fontSize={18}
-                    showPrintMargin={false}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    value={code}
-                    setOptions={{
-                      enableBasicAutocompletion: true,
-                      enableLiveAutocompletion: true,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 4,
-                    }}
-                  />
-                  <div className="btn-container d-flex justify-content-end pt-4 pe-3">
-                    {/* <button className="btn btn-secondary compile me-2">Compile</button>
-            <button
-              className="run btn btn-primary"
+    <div className="code-container">
+      {/* Modal */}
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent className="p-0">
+          <div className="close p-2 m-0 d-flex justify-content-end">
+            <CloseButton
               onClick={() => {
-                compileAndRun("71", code, input, language);
+                window.location.href = "/practice";
+              }}
+            />
+          </div>
+          <Login route={window.location.href} />
+        </ModalContent>
+      </Modal>
+      <div className="row">
+        <div className="col-5 question-container pb-5">
+          <Question data={codeQuestion} />
+        </div>
+        <div className="col-7 code-playground pb-3">
+          <div className="editor-options d-flex align-items-center justify-content-end py-2">
+            <label htmlFor="language">
+              Language:
+              <select
+                name="language"
+                id="language"
+                className="language mx-2 p-1"
+              >
+                <option value={language}>{language}</option>
+              </select>
+            </label>
+            <label htmlFor="theme" className="ms-2">
+              Theme:
+              <select
+                name="theme"
+                id="theme"
+                onChange={(e) => {
+                  setTheme(e.target.value);
+                  console.log(e.target.value);
+                }}
+                className="theme mx-2 p-1"
+              >
+                <option value="monokai">Dark</option>
+                <option value="github">Light</option>
+              </select>
+            </label>
+            <Button
+              variant="outline"
+              colorScheme="green"
+              size="sm"
+              onClick={() => {
+                setCode("");
+              }}
+            >
+              Reset Code
+            </Button>
+          </div>
+          <AceEditor
+            placeholder="Write your code here"
+            mode="python"
+            theme={theme}
+            name="blah2"
+            onLoad={() => {}}
+            onChange={(e) => {
+              setCode(e);
+            }}
+            className="code-editor rounded"
+            id="code-editor"
+            fontSize={18}
+            showPrintMargin={false}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={code}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 4,
+            }}
+          />
+          <div className="btn-container d-flex justify-content-end pt-4 pe-3">
+            <Button
+              size="lg"
+              variant="solid"
+              colorScheme="green"
+              {...(outputState == "Running" ? { isLoading: true } : "")}
+              {...(outputState == "Running" ? { loadingText: "Running" } : "")}
+              onClick={() => {
+                compileAndRun("Running", "71", code, input, language);
+                setOutputState("Running");
+                handleTabsChange(1);
               }}
             >
               Run
-            </button> */}
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      colorScheme="gray"
-                      className="me-2"
-                      {...(outputState == "Running" ? { isLoading: true } : "")}
-                      {...(outputState == "Running"
-                        ? { loadingText: "Running" }
-                        : "")}
-                      onClick={() => {
-                        compileAndRun("Running", "71", code, input, language);
-                        setOutputState("Running");
-                        handleTabsChange(1);
-                      }}
-                    >
-                      Run
-                    </Button>
-                    <Button
-                      {...(submissionState == "Submitting"
-                        ? { isLoading: true }
-                        : "")}
-                      {...(submissionState == "Running"
-                        ? { loadingText: "Submitting" }
-                        : "")}
-                      size="lg"
-                      variant="solid"
-                      colorScheme="green"
-                      onClick={() => {
-                        handleTabsChange(2);
-                        setSubmissionState("Submitting");
-                        submitCode();
-                      }}
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                  <div className="output-console mt-3 mb-5">
-                    <Tabs
-                      index={tabIndex}
-                      variant="soft-rounded"
-                      colorScheme="green"
-                    >
-                      <TabList>
-                        <Tab
-                          onClick={() => {
-                            handleTabsChange(0);
-                          }}
-                        >
-                          Input
-                        </Tab>
-                        <Tab
-                          onClick={() => {
-                            handleTabsChange(1);
-                          }}
-                        >
-                          Output
-                        </Tab>
-                        <Tab
-                          onClick={() => {
-                            handleTabsChange(2);
-                          }}
-                        >
-                          Testcases
-                        </Tab>
-                      </TabList>
-                      <TabPanels>
-                        <TabPanel className="px-0">
-                          <AceEditor
-                            mode="markdown"
-                            theme={theme}
-                            name="input-console"
-                            id="input-console"
-                            onLoad={() => {}}
-                            onChange={(e) => {
-                              setInput(e);
+            </Button>
+            {/* <Button
+                {...(submissionState == "Submitting"
+                  ? { isLoading: true }
+                  : "")}
+                {...(submissionState == "Running"
+                  ? { loadingText: "Submitting" }
+                  : "")}
+                size="lg"
+                variant="solid"
+                colorScheme="green"
+                onClick={() => {
+                  handleTabsChange(2);
+                  setSubmissionState("Submitting");
+                  submitCode();
+                }}
+              >
+                Submit
+              </Button> */}
+          </div>
+          <div className="output-console mt-3 mb-5">
+            <Tabs index={tabIndex} variant="soft-rounded" colorScheme="green">
+              <TabList>
+                <Tab
+                  onClick={() => {
+                    handleTabsChange(0);
+                  }}
+                >
+                  Input
+                </Tab>
+                <Tab
+                  onClick={() => {
+                    handleTabsChange(1);
+                  }}
+                >
+                  Output
+                </Tab>
+                {/* <Tab
+                    onClick={() => {
+                      handleTabsChange(2);
+                    }}
+                  >
+                    Testcases
+                  </Tab> */}
+              </TabList>
+              <TabPanels>
+                <TabPanel className="px-0">
+                  <AceEditor
+                    mode="markdown"
+                    theme={theme}
+                    name="input-console"
+                    id="input-console"
+                    onLoad={() => {}}
+                    onChange={(e) => {
+                      setInput(e);
+                    }}
+                    value={input}
+                    fontSize={18}
+                    showPrintMargin={false}
+                    showGutter={false}
+                    placeholder="Input will be displayed here"
+                  />
+                </TabPanel>
+                <TabPanel className="px-0">
+                  <AceEditor
+                    mode="markdown"
+                    theme={theme}
+                    name="output-console"
+                    id="output-console"
+                    value={output}
+                    fontSize={18}
+                    showPrintMargin={false}
+                    placeholder="Output will be displayed here"
+                  />
+                </TabPanel>
+                {/* <TabPanel className="px-0">
+                    <div className="test-cases">
+                      <Tabs variant="soft-rounded" className="d-flex">
+                        <TabList className="testcase-list d-flex flex-column pt-4">
+                          <Tab
+                            bg="red.200"
+                            color={"white"}
+                            _selected={{ color: "white", bg: "red.500" }}
+                            className="testcase-tab"
+                          >
+                            Testcase 1
+                          </Tab>
+                          <Tab
+                            bg={"green.200"}
+                            color={"white"}
+                            _selected={{
+                              color: "white",
+                              bg: "green.500",
                             }}
-                            value={input}
-                            fontSize={18}
-                            showPrintMargin={false}
-                            showGutter={false}
-                            placeholder="Input goes here"
-                          />
-                        </TabPanel>
-                        <TabPanel className="px-0">
-                          <AceEditor
-                            mode="markdown"
-                            theme={theme}
-                            name="output-console"
-                            id="output-console"
-                            value={output}
-                            fontSize={18}
-                            showPrintMargin={false}
-                            placeholder="Output will be displayed here"
-                          />
-                        </TabPanel>
-                        <TabPanel className="px-0">
-                          <div className="test-cases">
-                            <Tabs variant="soft-rounded" className="d-flex">
-                              <TabList className="testcase-list d-flex flex-column pt-4">
-                                <Tab
-                                  bg="red.200"
-                                  color={"white"}
-                                  _selected={{ color: "white", bg: "red.500" }}
-                                  className="testcase-tab"
-                                >
-                                  Testcase 1
-                                </Tab>
-                                <Tab
-                                  bg={"green.200"}
-                                  color={"white"}
-                                  _selected={{
-                                    color: "white",
-                                    bg: "green.500",
-                                  }}
-                                  className="testcase-tab"
-                                >
-                                  Testcase 2
-                                </Tab>
-                                <Tab className="testcase-tab">Testcase 3</Tab>
-                              </TabList>
-                              <TabPanels>
-                                <TabPanel>
-                                  <div className="testcase-details">
-                                    <div className="testcase-input">
-                                      <h5 className="testcase-heading">
-                                        Input
-                                      </h5>
-                                      <p>Input is Shown Here</p>
-                                    </div>
-                                    <div className="testcase-output">
-                                      <h5 className="testcase-heading">
-                                        Output
-                                      </h5>
-                                      <p>Output is Shown Here</p>
-                                    </div>
-                                    <div className="testcase-expected-output">
-                                      <h5 className="testcase-heading">
-                                        Expected Output
-                                      </h5>
-                                      <p>Expected Output is Shown Here</p>
-                                    </div>
-                                    <div className="compiler-message">
-                                      <h5 className="testcase-heading">
-                                        Compiler Message
-                                      </h5>
-                                      <p>Compiler Message is Shown Here</p>
-                                    </div>
-                                  </div>
-                                </TabPanel>
-                                <TabPanel>TestCase2</TabPanel>
-                                <TabPanel>TestCase3</TabPanel>
-                              </TabPanels>
-                            </Tabs>
-                          </div>
-                        </TabPanel>
-                      </TabPanels>
-                    </Tabs>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className="submissions-container">
-              <div className="previous-submissions">
-                <div className="container p-0">
-                  <h5 className="pt-3">Previous Submissions</h5>
-                  <div className="row py-3">
-                    <div className="col-md-6">
-                      <div className="submission-card rounded shadow p-4 mb-3">
-                        <h1>Submission #</h1>
-                      </div>
+                            className="testcase-tab"
+                          >
+                            Testcase 2
+                          </Tab>
+                          <Tab className="testcase-tab">Testcase 3</Tab>
+                        </TabList>
+                        <TabPanels>
+                          <TabPanel>
+                            <div className="testcase-details">
+                              <div className="testcase-input">
+                                <h5 className="testcase-heading">Input</h5>
+                                <p>Input is Shown Here</p>
+                              </div>
+                              <div className="testcase-output">
+                                <h5 className="testcase-heading">Output</h5>
+                                <p>Output is Shown Here</p>
+                              </div>
+                              <div className="testcase-expected-output">
+                                <h5 className="testcase-heading">
+                                  Expected Output
+                                </h5>
+                                <p>Expected Output is Shown Here</p>
+                              </div>
+                              <div className="compiler-message">
+                                <h5 className="testcase-heading">
+                                  Compiler Message
+                                </h5>
+                                <p>Compiler Message is Shown Here</p>
+                              </div>
+                            </div>
+                          </TabPanel>
+                          <TabPanel>TestCase2</TabPanel>
+                          <TabPanel>TestCase3</TabPanel>
+                        </TabPanels>
+                      </Tabs>
                     </div>
-                    <div className="col-md-6">
-                      <div className="submission-card rounded shadow p-4 mb-3">
-                        <h1>Submission #</h1>
-                      </div>
-                    </div>
-                  </div>
-                  <Divider />
-                </div>
-              </div>
-              <div className="submission-details">
-                <div className="container">
-                  <h5 className="pt-3">Submission # Details</h5>
-                  <div className="row py-3">
-                    <div className="col-md-8">
-                      <h6>Code</h6>
-                      <AceEditor
-                        mode="python"
-                        theme={theme}
-                        name="submission-code"
-                        id="submission-editor"
-                        className="submission-editor rounded shadow p-4 mb-3"
-                        value={code}
-                        fontSize={18}
-                        showPrintMargin={false}
-                        readOnly={true}
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <h6>Details</h6>
-                      <div className="submission-details-card rounded shadow p-4 mb-3">
-                        <p>
-                          <span className="question-props pe-2">
-                            Execution Time:
-                          </span>{" "}
-                          #####s
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+                  </TabPanel> */}
+              </TabPanels>
+            </Tabs>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

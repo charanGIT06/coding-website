@@ -1,5 +1,5 @@
 {
-  "python-questions": [
+  "questions": [
     {
       "qid": "py-1",
       "language": "python",
@@ -12,7 +12,7 @@
       "sampleOutput": ["Alphabets: 4", "Numbers: 4"],
       "explanation": "In the given string, there are 4 alphabet characters and 4 numeric characters.",
       "tags": "string, count",
-      "difficulty": "easy",
+      "difficulty": "hard",
       "testCases": [
         {
           "input": "July2022",
@@ -119,6 +119,71 @@
           "output": "90 48000"
         }
       ]
+    },
+    {
+      "qid": "cpp-1",
+      "language": "cpp",
+      "questionTitle": "Variable Sized Arrays",
+      "description": "Consider an n-element array, a, where each index i in the array contains a reference to an array of ki integers (where the value of ki varies from array to array). See the Explanation section below for a diagram. Given a, you must answer q queries. Each query is in the format j, where i denotes an index in array a and j denotes an index in the array located at a[i]. For each query, find and print the value of element j in the array at location a[i] on a new line. Click here to know more about how to create variable sized arrays in C++.",
+      "constraints": [
+        "1 <= n <= 10^5",
+        "1 <= q <= 10^5",
+        "1 <= k <= 10^5",
+        "0 <= i < n",
+        "0 <= j < k"
+      ],
+      "inputFormat": "The first line contains üo space-separated integers denoting the respective values of n (the number of variable-length arrays) and q (the number of queries). Each line i of the n subsequent lines contains a space-separated sequence in the format k a[i]0 a[i]1 … a[i]k-1 k -1 describing the k- element array located at a[i] Each of the q subsequent lines contains two space-separated integers describing the respective values of i (an index in array a) and j (an index in the array referenced by a[i]) for a query.",
+      "outputFormat": "For each pair of i and j values (i.e., for each query), print a single integer that denotes the element located at index j of the array referenced by a[i]. There should be a total of q lines of output.",
+      "sampleInput": ["2 2", "3 1 5 4", "5 1 2 8 9 3", "0 1", "1 3"],
+      "sampleOutput": ["5", "9"],
+      "explanation": [
+        "We perform the following q = 2 queries: ",
+        "Find the array located at index  i=0, which corresponds to a[0] = [1,5,4]. We must print the value at index j = 1 of this array which, as you can see, is 5.",
+        "Find the array located at index i = 1, which corresponds to a[1] = [1,2,8,9,3]. We must print the value at index j = 3 of this array which, as you can see, is 9."
+      ],
+      "tags": "pointers, arrays, strings",
+      "difficulty": "easy",
+      "testCases": [
+        {
+          "input": ["2 2", "3 1 5 4", "5 1 2 8 9 3", "0 1", "1 3"],
+          "output": ["5", "9"]
+        },
+        {
+          "input": "enTeR79257",
+          "output": ["Alphabets: 5", "Numbers: 5"]
+        }
+      ]
+    },
+    {
+      "qid": "cpp-2",
+      "language": "cpp",
+      "questionTitle": "Alphabets and Numbers",
+      "description": "Given a string, print the number of alphabets and numbers in the string",
+      "constraints": "n>0",
+      "inputFormat": "A string of alphabets and numbers",
+      "outputFormat": "Two integers",
+      "sampleInput": "enTeR79257",
+      "sampleOutput": "Alphabets: 5 Numbers: 5",
+      "tags": "strings",
+      "difficulty": "easy",
+      "explanation": "There are 5 alphabets and 5 numbers in the string",
+      "testCases":[
+
+      ]
+    },
+    {
+      "qid": "cpp-3",
+      "language": "cpp",
+      "questionTitle": "Fibonacci Series",
+      "description": "Given a number n, print the first n numbers in the fibonacci series",
+      "constraints": "n>0",
+      "inputFormat": "A number n",
+      "outputFormat": "A list of numbers",
+      "sampleInput": "5",
+      "sampleOutput": "0 1 1 2 3",
+      "tags": "recursion",
+      "difficulty": "easy",
+      "explanation": ""
     }
   ]
 }

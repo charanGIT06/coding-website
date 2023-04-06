@@ -1,10 +1,12 @@
-.code-editor, .submission-editor {
+.code-editor,
+.submission-editor {
   width: 100% !important;
   overflow-y: auto !important;
   font-family: "consolas", "courier new", monospace !important;
 }
 #input-console,
-#output-console, #test-case-console {
+#output-console,
+#test-case-console {
   width: inherit !important;
   height: 300px !important;
   overflow-y: auto;
@@ -36,9 +38,24 @@
   background-color: #272822 !important;
 }
 .testcase-tab {
-  padding: 1rem 0 1rem 0 !important;; 
+  padding: 1rem 0 1rem 0 !important;
   margin-bottom: 0.5rem !important;
 }
 .testcase-list {
   width: 30%;
+}
+
+/* Question Section */
+.code-container {
+  height: 92vh !important;
+  overflow: hidden;
+}
+.question-container, .code-playground{
+  height: 100vh !important;
+  overflow-y: auto !important;
+}
+.question-field {
+  background: #c7f6d774 !important;
+  padding: 1rem;
+  border-radius: 0.3rem;
 }

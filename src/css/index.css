@@ -5,13 +5,18 @@
 
 /* global variables */
 :root {
-    --green: #33855d;
+  --green: #33855d;
+  --light-green: #e6fbee;
 }
 
 .navbar {
-    background-color: var(--green) !important;
+  background-color: var(--green) !important;
 }
 
 .new-nav-style {
   background-color: var(--green) !important;
+}
+
+option {
+  background-color: var(--light-green) !important;
 }
