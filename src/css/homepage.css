@@ -33,4 +33,5 @@ background: linear-gradient(180deg, rgba(51,133,93,1) 51%, rgba(255,255,255,0.59
 }
 .input {
   height: 3rem !important;
+  width: 100%;
 }

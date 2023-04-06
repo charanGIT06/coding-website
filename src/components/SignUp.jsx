@@ -1,5 +1,6 @@
 // React
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // Chakra-UI
 import { Input, InputGroup, Button, InputRightElement } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -184,16 +185,18 @@ export default () => {
           </Button>
           <p className="m-0 py-3 text-center">OR</p>
           {/* Login */}
-          <Button
-            className="input mb-2"
-            variant="outline"
-            colorScheme="green"
-            onClick={() => {
-              window.location.href = "/login";
-            }}
-          >
-            Login
-          </Button>
+          <Link to="/login" className="input mb-2 w-100">
+            <Button
+              className="input mb-2"
+              variant="outline"
+              colorScheme="green"
+              // onClick={() => {
+              //   window.location.href = "/login";
+              // }}
+            >
+              Login
+            </Button>
+          </Link>
         </form>
       </div>
     </div>
