@@ -47,27 +47,6 @@ const NavBar = () => {
       <Navbar
         collapseOnSelect
         expand="lg"
-        // bg={
-        //   location.endsWith("/") ||
-        //   location.endsWith("/dashboard") ||
-        //   location.endsWith("/login")
-        //     ? "dark"
-        //     : "light"
-        // }
-        // variant={
-        //   location.endsWith("/") ||
-        //   location.endsWith("/dashboard") ||
-        //   location.endsWith("/login")
-        //     ? "dark"
-        //     : "light"
-        // }
-        // className={
-        //   location.endsWith("/") ||
-        //   location.endsWith("/dashboard") ||
-        //   location.endsWith("/login")
-        //     ? "new-nav-style"
-        //     : ""
-        // }
         bg="dark"
         variant="dark"
       >
@@ -78,7 +57,7 @@ const NavBar = () => {
             <Nav className=" me-auto">
               {/* <Nav.Link href="/dashboard">Dashboard</Nav.Link> */}
               <Nav.Link href="/practice">Practice</Nav.Link>
-              <Nav.Link href="/submissions">Submissions</Nav.Link>
+              {/* <Nav.Link href="/submissions">Submissions</Nav.Link> */}
               {/* <Nav.Link href="/">
                 <div className="theme-toggle d-flex align-items-center">
                   <Switch
