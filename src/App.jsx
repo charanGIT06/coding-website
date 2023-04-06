@@ -26,9 +26,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:account" element={<HomePage />} />
-          <Route
+          {/* <Route
             path="/dashboard"
-            element={loginStatus ? <Dashboard /> : <HomePage />}
+            element={loginStatus ? <Dashboard /> :
+            <HomePage />}
           />
           <Route path="/practice" element={<Practice />} />
           <Route path="/submissions" element={<Submissions />} />
