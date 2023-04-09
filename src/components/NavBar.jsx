@@ -1,6 +1,7 @@
 // React
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // Bootstrap
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -22,6 +23,9 @@ import {
 import { Divider } from "@chakra-ui/react";
 
 const NavBar = () => {
+
+  const navigate = useNavigate();
+
   const [mode, setMode] = useState("Light");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [placement, setPlacement] = useState("right");
@@ -52,8 +56,10 @@ const NavBar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className=" me-auto">
               {/* <Nav.Link href="/dashboard">Dashboard</Nav.Link> */}
-              <Nav.Link href="/practice">
-                Practice
+              <Nav.Link>
+                <Link to="/practice" className="nav-link">
+                  Practice
+                </Link>
                 {/* <Link to={'/practice'}>Practice</Link> */}
               </Nav.Link>
               {/* <Nav.Link href="/submissions">Submissions</Nav.Link> */}
@@ -76,10 +82,12 @@ const NavBar = () => {
               </Nav.Link> */}
             </Nav>
             <Nav className="d-flex flex-row align-items-center">
-              <Nav.Link className="ps-0 py-0 pe-2" href="/login">
-                {loginStatus && currentUser !== ""
-                  ? `Hey, ${currentUser}`
-                  : "Login"}
+              <Nav.Link className="nav-link ps-0 py-0 pe-2">
+                <Link className="nav-link" to='/login'>
+                  {loginStatus && currentUser !== ""
+                    ? `Hey, ${currentUser}`
+                    : "Login"}
+                </Link>
               </Nav.Link>
               {/* <Nav.Link className="ps-0 py-0 pe-2" href="/signup">
                 SignUp
@@ -108,7 +116,8 @@ const NavBar = () => {
                         onClick={() => {
                           localStorage.setItem("loginStatus", false);
                           localStorage.setItem("activeAccount", null);
-                          window.location = "/";
+                          // window.location = "/";
+                          navigate("/login");
                         }}
                       >
                         Log Out

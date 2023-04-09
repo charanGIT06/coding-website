@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Question from "../components/Question";
 import "../css/coding-page.css";
 import Login from "../components/Login";
+import NavBar from "../components/NavBar";
 // ACE Editor
 import ace from "ace-builds/src-noconflict/ace";
 import jsonWorkerUrl from "ace-builds/src-noconflict/worker-javascript?url";
@@ -341,108 +342,112 @@ export default () => {
   // }, [submissionResult]);
 
   return (
-    <div className="code-container">
-      {/* Modal */}
-      <Modal
-        closeOnOverlayClick={false}
-        isOpen={isOpen}
-        onClose={onClose}
-        isCentered
-      >
-        <ModalOverlay />
-        <ModalContent className="p-0">
-          <div className="close p-2 m-0 d-flex justify-content-end">
-            <CloseButton
-              onClick={() => {
-                window.location.href = "/practice";
+    <div className="page">
+      <NavBar />
+      <div className="code-container">
+        {/* Modal */}
+        <Modal
+          closeOnOverlayClick={false}
+          isOpen={isOpen}
+          onClose={onClose}
+          isCentered
+        >
+          <ModalOverlay />
+          <ModalContent className="p-0">
+            <div className="close p-2 m-0 d-flex justify-content-end">
+              <CloseButton
+                onClick={() => {
+                  window.location.href = "/practice";
+                }}
+              />
+            </div>
+            <Login route={window.location.href} />
+          </ModalContent>
+        </Modal>
+        <div className="row">
+          <div className="col-5 question-container pb-5">
+            <Question data={codeQuestion} />
+          </div>
+          <div className="col-7 code-playground pb-3">
+            <div className="editor-options d-flex align-items-center justify-content-end py-2">
+              <label htmlFor="language">
+                Language:
+                <select
+                  name="language"
+                  id="language"
+                  className="language mx-2 p-1"
+                >
+                  <option value={language}>{language}</option>
+                </select>
+              </label>
+              <label htmlFor="theme" className="ms-2">
+                Theme:
+                <select
+                  name="theme"
+                  id="theme"
+                  onChange={(e) => {
+                    setTheme(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                  className="theme mx-2 p-1"
+                >
+                  <option value="monokai">Dark</option>
+                  <option value="github">Light</option>
+                </select>
+              </label>
+              <Button
+                variant="outline"
+                colorScheme="green"
+                size="sm"
+                onClick={() => {
+                  setCode("");
+                }}
+              >
+                Reset Code
+              </Button>
+            </div>
+            <AceEditor
+              placeholder="Write your code here"
+              mode="python"
+              theme={theme}
+              name="blah2"
+              onLoad={() => {}}
+              onChange={(e) => {
+                setCode(e);
+              }}
+              className="code-editor rounded"
+              id="code-editor"
+              fontSize={18}
+              showPrintMargin={false}
+              showGutter={true}
+              highlightActiveLine={true}
+              value={code}
+              setOptions={{
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true,
+                enableSnippets: false,
+                showLineNumbers: true,
+                tabSize: 4,
               }}
             />
-          </div>
-          <Login route={window.location.href} />
-        </ModalContent>
-      </Modal>
-      <div className="row">
-        <div className="col-5 question-container pb-5">
-          <Question data={codeQuestion} />
-        </div>
-        <div className="col-7 code-playground pb-3">
-          <div className="editor-options d-flex align-items-center justify-content-end py-2">
-            <label htmlFor="language">
-              Language:
-              <select
-                name="language"
-                id="language"
-                className="language mx-2 p-1"
-              >
-                <option value={language}>{language}</option>
-              </select>
-            </label>
-            <label htmlFor="theme" className="ms-2">
-              Theme:
-              <select
-                name="theme"
-                id="theme"
-                onChange={(e) => {
-                  setTheme(e.target.value);
-                  console.log(e.target.value);
+            <div className="btn-container d-flex justify-content-end pt-4 pe-3">
+              <Button
+                size="lg"
+                variant="solid"
+                colorScheme="green"
+                {...(outputState == "Running" ? { isLoading: true } : "")}
+                {...(outputState == "Running"
+                  ? { loadingText: "Running" }
+                  : "")}
+                onClick={() => {
+                  compileAndRun("Running", "71", code, input, language);
+                  setOutputState("Running");
+                  handleTabsChange(1);
                 }}
-                className="theme mx-2 p-1"
               >
-                <option value="monokai">Dark</option>
-                <option value="github">Light</option>
-              </select>
-            </label>
-            <Button
-              variant="outline"
-              colorScheme="green"
-              size="sm"
-              onClick={() => {
-                setCode("");
-              }}
-            >
-              Reset Code
-            </Button>
-          </div>
-          <AceEditor
-            placeholder="Write your code here"
-            mode="python"
-            theme={theme}
-            name="blah2"
-            onLoad={() => {}}
-            onChange={(e) => {
-              setCode(e);
-            }}
-            className="code-editor rounded"
-            id="code-editor"
-            fontSize={18}
-            showPrintMargin={false}
-            showGutter={true}
-            highlightActiveLine={true}
-            value={code}
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              enableSnippets: false,
-              showLineNumbers: true,
-              tabSize: 4,
-            }}
-          />
-          <div className="btn-container d-flex justify-content-end pt-4 pe-3">
-            <Button
-              size="lg"
-              variant="solid"
-              colorScheme="green"
-              {...(outputState == "Running" ? { isLoading: true } : "")}
-              {...(outputState == "Running" ? { loadingText: "Running" } : "")}
-              onClick={() => {
-                compileAndRun("Running", "71", code, input, language);
-                setOutputState("Running");
-                handleTabsChange(1);
-              }}
-            >
-              Run
-            </Button>
-            {/* <Button
+                Run
+              </Button>
+              {/* <Button
                 {...(submissionState == "Submitting"
                   ? { isLoading: true }
                   : "")}
@@ -460,63 +465,63 @@ export default () => {
               >
                 Submit
               </Button> */}
-          </div>
-          <div className="output-console mt-3 mb-5">
-            <Tabs index={tabIndex} variant="soft-rounded" colorScheme="green">
-              <TabList>
-                <Tab
-                  onClick={() => {
-                    handleTabsChange(0);
-                  }}
-                >
-                  Input
-                </Tab>
-                <Tab
-                  onClick={() => {
-                    handleTabsChange(1);
-                  }}
-                >
-                  Output
-                </Tab>
-                {/* <Tab
+            </div>
+            <div className="output-console mt-3 mb-5">
+              <Tabs index={tabIndex} variant="soft-rounded" colorScheme="green">
+                <TabList>
+                  <Tab
+                    onClick={() => {
+                      handleTabsChange(0);
+                    }}
+                  >
+                    Input
+                  </Tab>
+                  <Tab
+                    onClick={() => {
+                      handleTabsChange(1);
+                    }}
+                  >
+                    Output
+                  </Tab>
+                  {/* <Tab
                     onClick={() => {
                       handleTabsChange(2);
                     }}
                   >
                     Testcases
                   </Tab> */}
-              </TabList>
-              <TabPanels>
-                <TabPanel className="px-0">
-                  <AceEditor
-                    mode="markdown"
-                    theme={theme}
-                    name="input-console"
-                    id="input-console"
-                    onLoad={() => {}}
-                    onChange={(e) => {
-                      setInput(e);
-                    }}
-                    value={input}
-                    fontSize={18}
-                    showPrintMargin={false}
-                    showGutter={false}
-                    placeholder="Input will be displayed here"
-                  />
-                </TabPanel>
-                <TabPanel className="px-0">
-                  <AceEditor
-                    mode="markdown"
-                    theme={theme}
-                    name="output-console"
-                    id="output-console"
-                    value={output}
-                    fontSize={18}
-                    showPrintMargin={false}
-                    placeholder="Output will be displayed here"
-                  />
-                </TabPanel>
-                {/* <TabPanel className="px-0">
+                </TabList>
+                <TabPanels>
+                  <TabPanel className="px-0">
+                    <AceEditor
+                      mode="markdown"
+                      theme={theme}
+                      name="input-console"
+                      id="input-console"
+                      onLoad={() => {}}
+                      onChange={(e) => {
+                        setInput(e);
+                      }}
+                      value={input}
+                      fontSize={18}
+                      showPrintMargin={false}
+                      showGutter={false}
+                      placeholder="Input will be displayed here"
+                    />
+                  </TabPanel>
+                  <TabPanel className="px-0">
+                    <AceEditor
+                      mode="markdown"
+                      theme={theme}
+                      name="output-console"
+                      id="output-console"
+                      value={output}
+                      fontSize={18}
+                      showPrintMargin={false}
+                      placeholder="Output will be displayed here"
+                    />
+                  </TabPanel>
+                  {/* <TabPanel className="px-0">
                     <div className="test-cases">
                       <Tabs variant="soft-rounded" className="d-flex">
                         <TabList className="testcase-list d-flex flex-column pt-4">
@@ -572,8 +577,9 @@ export default () => {
                       </Tabs>
                     </div>
                   </TabPanel> */}
-              </TabPanels>
-            </Tabs>
+                </TabPanels>
+              </Tabs>
+            </div>
           </div>
         </div>
       </div>

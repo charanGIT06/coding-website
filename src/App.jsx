@@ -21,7 +21,6 @@ const loginStatus = JSON.parse(localStorage.getItem("loginStatus"));
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider>
     <React.StrictMode>
-      <NavBar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
