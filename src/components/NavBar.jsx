@@ -83,7 +83,7 @@ const NavBar = () => {
             </Nav>
             <Nav className="d-flex flex-row align-items-center">
               <Nav.Link className="nav-link ps-0 py-0 pe-2">
-                <Link className="nav-link" to='/login'>
+                <Link className="nav-link" to="/login">
                   {loginStatus && currentUser !== ""
                     ? `Hey, ${currentUser}`
                     : "Login"}
@@ -98,21 +98,21 @@ const NavBar = () => {
                   <DrawerContent>
                     <DrawerHeader borderBottomWidth="1px">
                       <div className="account d-flex">
-                        <div className="account__avatar">
+                        <div className="account__avatar ">
                           <Avatar size="lg" bg="gray.500" />
                         </div>
                         <div className="account__name ps-3">
-                          <h4>Hey, {currentUser}</h4>
-                          <p>{currentUserEmail}</p>
+                          <h4 className="green-text">Hey, {currentUser}</h4>
+                          <p className="green-text">{currentUserEmail}</p>
                         </div>
                       </div>
                     </DrawerHeader>
                     <DrawerBody>
-                      <Button variant="outline" mr={3} onClick={onClose}>
+                      <Button className="green-btn-outline" variant="outline" mr={3} onClick={onClose}>
                         Cancel
                       </Button>
                       <Button
-                        colorScheme="red"
+                      className="green-btn"
                         onClick={() => {
                           localStorage.setItem("loginStatus", false);
                           localStorage.setItem("activeAccount", null);

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@100;300;400;500;700;800&family=Raleway:wght@300;400;500&family=Source+Code+Pro&display=swap");
 .left,
 .right {
   height: calc(100vh - 56px);
@@ -6,18 +7,17 @@
 background: rgb(51,133,93);
 background: linear-gradient(180deg, rgba(51,133,93,1) 51%, rgba(255,255,255,0.5998774509803921) 100%);
 } */
-.right {
+/* .right {
   background: rgb(51, 133, 93);
   background: linear-gradient(
     180deg,
     rgba(51, 133, 93, 1) 5%,
     rgba(255, 255, 255, 0.5998774509803921) 50%
   );
-}
+} */
 .signup-container,
 .login-container {
   height: 100%;
-  /* background-color: red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,12 +26,26 @@ background: linear-gradient(180deg, rgba(51,133,93,1) 51%, rgba(255,255,255,0.59
 .signup-form {
   height: auto;
   width: 90%;
-  background-color: white;
   padding: 2rem;
   border-radius: 1.5rem;
+  border: 2px solid var(--dark-green);
+  color: var(--dark-green);
   /* box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.725); */
 }
 .input {
   height: 3rem !important;
   width: 100%;
+}
+
+.caption {
+  font-family: "DM Serif Display", serif;
+  font-size: 3.2rem;
+  color: var(--dark-green);
+}
+
+.caption-text {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
 }

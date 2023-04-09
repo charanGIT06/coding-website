@@ -75,7 +75,7 @@ export default ({ route }) => {
             duration: 3000,
             isClosable: true,
           });
-          routeTo("practice");
+          routeTo(route);
         } else {
           // Login Failed
           toast({
@@ -106,7 +106,7 @@ export default ({ route }) => {
           <h3 className="text-center mb-4 pb-4  ">Login to your account</h3>
           <label htmlFor="username">
             <Input
-              className="input mb-2"
+              className="input text-input mb-2"
               variant="outline"
               placeholder="Username"
               onChange={(e) => {
@@ -117,7 +117,7 @@ export default ({ route }) => {
           <label htmlFor="password">
             <InputGroup size="md">
               <Input
-                className="input mb-2"
+                className="input text-input mb-2"
                 pr="4.5rem"
                 type={show ? "text" : "password"}
                 placeholder="Enter password"
@@ -126,15 +126,14 @@ export default ({ route }) => {
                 }}
               />
               <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                <Button className="text-input mt-2" h="1.75rem" size="sm" onClick={handleClick}>
                   {show ? "Hide" : "Show"}
                 </Button>
               </InputRightElement>
             </InputGroup>
           </label>
           <Button
-            className="input mb-2"
-            colorScheme="green"
+            className="login-btn input mb-2"
             onClick={() => {
               login();
             }}

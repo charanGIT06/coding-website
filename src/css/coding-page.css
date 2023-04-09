@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@100;300;400;500;700;800&family=Raleway:wght@300;400;500&family=Source+Code+Pro&display=swap');
 .code-editor,
 .submission-editor {
   width: 100% !important;
+  color: white !important;
   overflow-y: auto !important;
   font-family: "consolas", "courier new", monospace !important;
 }
@@ -48,14 +50,25 @@
 /* Question Section */
 .code-container {
   height: 92vh !important;
+
   overflow: hidden;
 }
 .question-container, .code-playground{
   height: 100vh !important;
   overflow-y: auto !important;
+  font-family: 'Raleway', sans-serif !important;
 }
 .question-field {
-  background: #c7f6d774 !important;
+  background-color: #b7e4c7 !important;
+  font-family: 'Source Code Pro', monospace !important;
+  font-size: 1rem !important;
   padding: 1rem;
   border-radius: 0.3rem;
+}
+
+.select {
+  background-color: var(--light-green) !important;
+  color: black !important;
+  border-radius: 10px;
+  padding: 0.2rem 0.7rem !important;
 }

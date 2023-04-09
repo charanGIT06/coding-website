@@ -7,7 +7,7 @@ export default ({question}) => {
   let id = 1
   return (
     <div className="col-12" key={id++}>
-      <div className="question-card rounded shadow-lg d-flex py-3 px-4 mb-4">
+      <div className="question-card  rounded shadow-lg d-flex py-3 px-4 mb-4">
         <div className="question-card-left">
           <div className="card-header">
             <h5 className="card-title pb-2">{question.questionTitle}</h5>
@@ -34,7 +34,7 @@ export default ({question}) => {
               question.questionTitle
             }
           >
-            <Button colorScheme="green" variant="outline">
+            <Button variant="outline" className="input question-card-btn">
               Solve
             </Button>
           </Link>

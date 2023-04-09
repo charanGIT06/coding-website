@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@100;300;400;500;700;800&family=Raleway:wght@300;400;500&family=Source+Code+Pro&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,19 +8,56 @@
 /* global variables */
 :root {
   --black: #002029;
+  --dark-green: #081c15;
   --lime: #dddf00;
   --green: #33855d;
   --light-green: #e6fbee;
 }
 
-.navbar {
-  background-color: var(--green) !important;
+.green-text {
+  color: var(--dark-green) !important;
 }
 
+.navbar {
+  background-color: var(--dark-green) !important;
+}
+body {
+  background-color: var(--light-green) !important;
+  font-family: "Raleway", sans-serif;
+  color: white !important;
+}
 .new-nav-style {
   background-color: var(--green) !important;
 }
 
 option {
   background-color: var(--light-green) !important;
+  color: var(--black) !important;
+}
+.login-btn {
+  background-color: var(--dark-green) !important;
+  color: var(--light-green);
+}
+.login-btn:hover {
+  background-color: #1b4332 !important;
+  color: var(--light-green);
+}
+.green-btn {
+  background-color: var(--dark-green) !important;
+  color: var(--light-green) !important;
+}
+.green-btn:hover {
+  background-color: #1b4332 !important;
+  color: var(--light-green);
+}
+.green-btn-outline {
+  border: 2px solid var(--dark-green);
+  color: var(--dark-green) !important;
+}
+.green-btn-outline:hover {
+  background-color: var(--dark-green) !important;
+  color: var(--light-green) !important;
+}
+.text-input {
+border: 2px solid var(--dark-green) !important;
 }

@@ -62,7 +62,7 @@ export default () => {
   return (
     <div className="page">
       <NavBar />
-      <div className="practice-page">
+      <div className="practice-page green-text">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

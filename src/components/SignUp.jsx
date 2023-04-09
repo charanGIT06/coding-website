@@ -104,7 +104,7 @@ export default () => {
           <h3 className="text-center mb-4">Create your account</h3>
           {/* Username */}
           <Input
-            className="input mb-2"
+            className="input text-input mb-2"
             variant="outline"
             placeholder="Username"
             onChange={(e) => {
@@ -113,7 +113,7 @@ export default () => {
           />
           {/* Email */}
           <Input
-            className="input email mb-2"
+            className="input text-input email mb-2"
             variant="outline"
             placeholder="Enter Email"
             type="email"
@@ -124,7 +124,7 @@ export default () => {
           {/* Password */}
           <InputGroup size="md">
             <Input
-              className="input mb-2"
+              className="input text-input mb-2"
               pr="4.5rem"
               type={show ? "text" : "password"}
               placeholder="Enter password"
@@ -133,7 +133,12 @@ export default () => {
               }}
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
+              <Button
+                className="text-input mt-2"
+                h="1.75rem"
+                size="sm"
+                onClick={handleClick}
+              >
                 {show ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
@@ -141,7 +146,7 @@ export default () => {
           {/* Confirm Password */}
           <InputGroup size="md">
             <Input
-              className="input mb-2"
+              className="input text-input mb-2"
               pr="4.5rem"
               type={show ? "text" : "password"}
               placeholder="Confirm password"
@@ -150,14 +155,19 @@ export default () => {
               }}
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
+              <Button
+                className="text-input mt-2"
+                h="1.75rem"
+                size="sm"
+                onClick={handleClick}
+              >
                 {show ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
           </InputGroup>
           {/* Sign Up */}
           <Button
-            className="input"
+            className="input login-btn"
             colorScheme="green"
             onClick={() => {
               if (password !== confirmPassword) {
@@ -187,9 +197,7 @@ export default () => {
           {/* Login */}
           <Link to="/login" className="input mb-2 w-100">
             <Button
-              className="input mb-2"
-              variant="outline"
-              colorScheme="green"
+              className="input login-btn mb-2"
               // onClick={() => {
               //   window.location.href = "/login";
               // }}

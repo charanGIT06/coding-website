@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@100;300;400;500;700;800&family=Raleway:wght@300;400;500&family=Source+Code+Pro&display=swap');
 .practice-page {
     height: 100vh;
+    font-family: 'Raleway', sans-serif;
 }
 .language-container {
     height: 100%;
@@ -21,4 +23,12 @@ height: 10rem !important;
 }
 .question-props {
     color: var(--green) !important;
+}
+.question-card-btn {
+    color: var(--dark-green) !important;
+    border: 2px solid var(--dark-green) !important;
+}
+.question-card-btn:hover {
+    background-color: var(--dark-green) !important;
+    color: var(--light-green) !important;
 }

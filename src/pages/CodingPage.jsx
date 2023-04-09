@@ -1,6 +1,6 @@
 // React
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // Components
 import Question from "../components/Question";
 import "../css/coding-page.css";
@@ -30,6 +30,9 @@ import { useDisclosure } from "@chakra-ui/react";
 import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 
 export default () => {
+
+  const navigate = useNavigate();
+
   const { language, qid, question } = useParams();
   const data = JSON.parse(localStorage.getItem("data"))["questions"];
   const codeQuestion = data.find((question) => {
@@ -344,7 +347,7 @@ export default () => {
   return (
     <div className="page">
       <NavBar />
-      <div className="code-container">
+      <div className="code-container green-text">
         {/* Modal */}
         <Modal
           closeOnOverlayClick={false}
@@ -357,15 +360,15 @@ export default () => {
             <div className="close p-2 m-0 d-flex justify-content-end">
               <CloseButton
                 onClick={() => {
-                  window.location.href = "/practice";
+                  navigate("/practice")
                 }}
               />
             </div>
-            <Login route={window.location.href} />
+            <Login route={`codingpage/${language}/${qid}/${question}`} />
           </ModalContent>
         </Modal>
         <div className="row">
-          <div className="col-5 question-container pb-5">
+          <div className="col-5 question-container green-text pb-5">
             <Question data={codeQuestion} />
           </div>
           <div className="col-7 code-playground pb-3">
@@ -375,7 +378,7 @@ export default () => {
                 <select
                   name="language"
                   id="language"
-                  className="language mx-2 p-1"
+                  className="language select mx-2 p-1"
                 >
                   <option value={language}>{language}</option>
                 </select>
@@ -389,15 +392,15 @@ export default () => {
                     setTheme(e.target.value);
                     console.log(e.target.value);
                   }}
-                  className="theme mx-2 p-1"
+                  className="theme select mx-2 p-1"
                 >
-                  <option value="monokai">Dark</option>
-                  <option value="github">Light</option>
+                  <option className="option" value="monokai">Dark</option>
+                  <option className="option" value="github">Light</option>
                 </select>
               </label>
               <Button
                 variant="outline"
-                colorScheme="green"
+                className="green-btn-outline"
                 size="sm"
                 onClick={() => {
                   setCode("");
@@ -415,8 +418,9 @@ export default () => {
               onChange={(e) => {
                 setCode(e);
               }}
-              className="code-editor rounded"
+              className="code-editor rounded text-white"
               id="code-editor"
+              fontFamily="Times New Roman"
               fontSize={18}
               showPrintMargin={false}
               showGutter={true}
@@ -433,8 +437,7 @@ export default () => {
             <div className="btn-container d-flex justify-content-end pt-4 pe-3">
               <Button
                 size="lg"
-                variant="solid"
-                colorScheme="green"
+                className="green-btn"
                 {...(outputState == "Running" ? { isLoading: true } : "")}
                 {...(outputState == "Running"
                   ? { loadingText: "Running" }
