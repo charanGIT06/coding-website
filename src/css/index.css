@@ -5,6 +5,8 @@
 
 /* global variables */
 :root {
+  --black: #002029;
+  --lime: #dddf00;
   --green: #33855d;
   --light-green: #e6fbee;
 }

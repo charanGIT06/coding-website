@@ -3,10 +3,12 @@ import { useState } from "react";
 // Chakra-UI
 import { Input, InputGroup, Button, InputRightElement } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 // import { useParams } from "react-router-dom";
 
 export default ({ route }) => {
   // const { route } = useParams();
+  const navigate = useNavigate();
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +17,10 @@ export default ({ route }) => {
   const handleClick = () => setShow(!show);
 
   const toast = useToast();
+
+  const routeTo = (route) => {
+    navigate(route !== undefined ? `/${route}` : '/', { replace: true });
+  };
 
   const formValidation = () => {
     if (username === "") {
@@ -69,8 +75,7 @@ export default ({ route }) => {
             duration: 3000,
             isClosable: true,
           });
-          // console.log("route: ", route)
-          window.location.href = (route !== undefined ? route : "/practice");
+          routeTo("practice");
         } else {
           // Login Failed
           toast({

@@ -1,6 +1,7 @@
 // React
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // Components
 import QuestionCard from "../components/QuestionCard";
 import "../css/practice.css";
@@ -12,6 +13,9 @@ import data from "../data/data.json";
 import { Select } from "@chakra-ui/react";
 
 export default () => {
+
+  const navigate = useNavigate();
+
   const languages = ["Python", "Java", "Cpp", "Javascript"];
   localStorage.setItem("data", JSON.stringify(data));
 

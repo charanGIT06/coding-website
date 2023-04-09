@@ -1,5 +1,6 @@
 // React
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // Bootstrap
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -44,19 +45,17 @@ const NavBar = () => {
 
   return (
     <div className="nav-bar">
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="dark"
-        variant="dark"
-      >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">practice.code</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className=" me-auto">
               {/* <Nav.Link href="/dashboard">Dashboard</Nav.Link> */}
-              <Nav.Link href="/practice">Practice</Nav.Link>
+              <Nav.Link href="/practice">
+                Practice
+                {/* <Link to={'/practice'}>Practice</Link> */}
+              </Nav.Link>
               {/* <Nav.Link href="/submissions">Submissions</Nav.Link> */}
               {/* <Nav.Link href="/">
                 <div className="theme-toggle d-flex align-items-center">
@@ -114,7 +113,7 @@ const NavBar = () => {
                       >
                         Log Out
                       </Button>
-                      <Divider/>
+                      <Divider />
                     </DrawerBody>
                     {/* <DrawerFooter borderTopWidth="1px">
                     </DrawerFooter> */}
