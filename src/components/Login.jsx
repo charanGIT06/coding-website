@@ -11,6 +11,7 @@ export default ({ route }) => {
   const navigate = useNavigate();
 
   const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [show, setShow] = useState(false);
@@ -19,7 +20,9 @@ export default ({ route }) => {
   const toast = useToast();
 
   const routeTo = (route) => {
-    navigate(route !== undefined ? `/${route}` : '/practice', { replace: true });
+    navigate(route !== undefined ? `/${route}` : "/practice", {
+      replace: true,
+    });
   };
 
   const formValidation = () => {
@@ -49,9 +52,9 @@ export default ({ route }) => {
     // Login Logic
     if (formValidation()) {
       const accounts = JSON.parse(localStorage.getItem("accounts"));
-      const account = accounts.find(
-        (account) => JSON.parse(account).username === username
-      );
+      const account =
+        accounts.find((account) => JSON.parse(account).email === email) ||
+        accounts.find((account) => JSON.parse(account).username === username);
       console.log("account: ", account);
 
       if (account != undefined && JSON.parse(account)) {
@@ -111,6 +114,7 @@ export default ({ route }) => {
               placeholder="Username"
               onChange={(e) => {
                 setUserName(e.target.value);
+                setEmail(e.target.value);
               }}
             />
           </label>
@@ -126,7 +130,12 @@ export default ({ route }) => {
                 }}
               />
               <InputRightElement width="4.5rem">
-                <Button className="text-input mt-2" h="1.75rem" size="sm" onClick={handleClick}>
+                <Button
+                  className="text-input mt-2"
+                  h="1.75rem"
+                  size="sm"
+                  onClick={handleClick}
+                >
                   {show ? "Hide" : "Show"}
                 </Button>
               </InputRightElement>

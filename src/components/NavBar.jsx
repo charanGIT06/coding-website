@@ -103,7 +103,7 @@ const NavBar = () => {
                         </div>
                         <div className="account__name ps-3">
                           <h4 className="green-text">Hey, {currentUser}</h4>
-                          <p className="green-text">{currentUserEmail}</p>
+                          <p className="green-text small">{currentUserEmail}</p>
                         </div>
                       </div>
                     </DrawerHeader>
