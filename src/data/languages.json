@@ -2,63 +2,76 @@
   "python": [
     {
       "id": 70,
-      "name": "Python (2.7.17)"
+      "name": "Python (2.7.17)",
+      "aceMode": "python"
     },
     {
       "id": 71,
-      "name": "Python (3.8.1)"
+      "name": "Python (3.8.1)",
+      "aceMode": "python"
     },
     {
       "id": 92,
-      "name": "Python (3.11.2)"
+      "name": "Python (3.11.2)",
+      "aceMode": "python"
     }
   ],
   "c": [
     {
       "id": 48,
-      "name": "C (GCC 7.4.0)"
+      "name": "C (GCC 7.4.0)",
+      "aceMode": "c_cpp"
     },
     {
       "id": 49,
-      "name": "C (GCC 8.3.0)"
+      "name": "C (GCC 8.3.0)",
+      "aceMode": "c_cpp"
     },
     {
       "id": 50,
-      "name": "C (GCC 9.2.0)"
+      "name": "C (GCC 9.2.0)",
+      "aceMode": "c_cpp"
     }
   ],
   "cpp": [
     {
       "id": 52,
-      "name": "C++ (GCC 7.4.0)"
+      "name": "C++ (GCC 7.4.0)",
+      "aceMode": "c_cpp"
     },
     {
       "id": 53,
-      "name": "C++ (GCC 8.3.0)"
+      "name": "C++ (GCC 8.3.0)",
+      "aceMode": "c_cpp"
     },
     {
       "id": 54,
-      "name": "C++ (GCC 9.2.0)"
+      "name": "C++ (GCC 9.2.0)",
+      "aceMode": "c_cpp"
     }
   ],
   "java": [
     {
       "id": 62,
-      "name": "Java (OpenJDK 13.0.1)"
+      "name": "Java (OpenJDK 13.0.1)",
+      "aceMode": "java"
     },
     {
       "id": 91,
-      "name": "Java (JDK 17.0.6)"
+      "name": "Java (JDK 17.0.6)",
+      "aceMode": "java"
     }
   ],
   "javascript": [
     {
       "id": 63,
-      "name": "JavaScript (Node.js 12.14.0)"
+      "name": "JavaScript (Node.js 12.14.0)",
+      "aceMode": "javascript"
     },
     {
       "id": 93,
-      "name": "JavaScript (Node.js 18.15.0)"
+      "name": "JavaScript (Node.js 18.15.0)",
+      "aceMode": "javascript"
     }
   ]
 }

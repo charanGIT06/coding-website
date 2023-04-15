@@ -146,7 +146,7 @@ export default () => {
               }
             }
           } else {
-            stdout = decode(stdout);
+            stdout = decode(stdout) || "";
             if (action != "submit") {
               setOutput(stdout);
             }
@@ -165,7 +165,7 @@ export default () => {
           // console.log("TIME: ", execTime);
           // console.log("ERROR: ", stderr);
         } catch (error) {
-          console.log(error);
+          console.log(error || "");
         }
         console.log("output", outputChecking);
       });
@@ -300,7 +300,7 @@ export default () => {
           </div>
           <AceEditor
             placeholder="Write your code here"
-            mode="python"
+            mode={languageOptions[0].aceMode}
             theme={theme}
             name="blah2"
             onLoad={() => {}}
