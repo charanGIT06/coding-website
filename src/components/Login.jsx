@@ -19,7 +19,7 @@ export default ({ route }) => {
   const toast = useToast();
 
   const routeTo = (route) => {
-    navigate(route !== undefined ? `/${route}` : '/', { replace: true });
+    navigate(route !== undefined ? `/${route}` : '/practice', { replace: true });
   };
 
   const formValidation = () => {
