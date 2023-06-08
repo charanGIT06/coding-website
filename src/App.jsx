@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Practice from "./pages/Practice";
 import Submissions from "./pages/Submissions";
 import CodingPage from "./pages/CodingPage";
+import Footer from "./components/Footer";
 // CSS
 import "./css/index.css";
 
@@ -37,6 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           />
           {/* <Route path="/codingpage/:language" element={<CodingPage />} /> */}
         </Routes>
+      <Footer />
       </BrowserRouter>
     </React.StrictMode>
   </ChakraProvider>

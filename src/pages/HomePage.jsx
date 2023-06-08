@@ -9,6 +9,7 @@ import { Divider } from "@chakra-ui/react";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 export default () => {
   let { account } = useParams();
