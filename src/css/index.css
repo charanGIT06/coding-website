@@ -21,8 +21,10 @@
 .navbar {
   background-color: var(--dark-green) !important;
 }
+.footer {
+  background-color: var(--dark-green) !important;
+}
 body {
-  background-color: var(--light-green) !important;
   font-family: "Raleway", sans-serif;
   color: white !important;
 }
@@ -59,5 +61,5 @@ option {
   color: var(--light-green) !important;
 }
 .text-input {
-border: 2px solid var(--dark-green) !important;
+  border: 2px solid var(--dark-green) !important;
 }
