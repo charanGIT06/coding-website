@@ -8,8 +8,6 @@ import "../css/practice.css";
 import NavBar from "../components/NavBar";
 // Chakra-UI
 import { Divider } from "@chakra-ui/react";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
 import data from "../data/data.json";
 import { Select } from "@chakra-ui/react";
 
@@ -26,6 +24,8 @@ export default () => {
   const [difficulty, setDifficulty] = useState("All");
 
   const [questions, setQuestions] = useState(data["questions"]);
+
+  const [mode, setMode] = useState("light");
 
   useEffect(() => {
     if (language !== "All") {
@@ -68,6 +68,7 @@ export default () => {
             <div className="col-md-12">
               <div className="greeting pt-4 pb-3">
                 <h1>Practice</h1>
+
                 <p className="m-0">Ready to Code?</p>
               </div>
               <Divider />

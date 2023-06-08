@@ -191,7 +191,7 @@ export default () => {
               }
             }}
           >
-            Sign Up
+            Register
           </Button>
           <p className="m-0 py-3 text-center">OR</p>
           {/* Login */}

@@ -149,6 +149,15 @@ export default ({ route }) => {
           >
             Login
           </Button>
+          <p className="text-center">OR</p>
+          <Button
+            className="login-btn input mb-2"
+            onClick={() => {
+              routeTo("register");
+            }}
+          > 
+            Register
+          </Button>
         </form>
       </div>
     </div>
