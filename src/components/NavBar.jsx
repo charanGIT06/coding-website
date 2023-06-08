@@ -51,9 +51,7 @@ const NavBar = () => {
     <div className="nav-bar">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand onClick={()=>{
-            navigate("/login");
-          }}><button>practice.code</button></Navbar.Brand>
+          <Navbar.Brand href="/">practice.code</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className=" me-auto">
